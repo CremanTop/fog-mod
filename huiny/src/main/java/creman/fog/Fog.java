@@ -1,4 +1,4 @@
-package creman.pipe;
+package creman.fog;
 
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -7,11 +7,11 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod(
-        modid = Pipe.MOD_ID,
-        name = Pipe.MOD_NAME,
-        version = Pipe.VERSION
+        modid = Fog.MOD_ID,
+        name = Fog.MOD_NAME,
+        version = Fog.VERSION
 )
-public class Pipe {
+public class Fog {
 
     public static final String MOD_ID = "fogutil";
     public static final String MOD_NAME = "Fog Util";
@@ -23,7 +23,7 @@ public class Pipe {
      * This is the instance of your mod as created by Forge. It will never be null.
      */
     @Mod.Instance(MOD_ID)
-    public static Pipe INSTANCE;
+    public static Fog INSTANCE;
 
     @Mod.EventHandler
     public void preinit(FMLPreInitializationEvent event) {

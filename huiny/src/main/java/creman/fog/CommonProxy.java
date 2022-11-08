@@ -1,6 +1,6 @@
-package creman.pipe;
+package creman.fog;
 
-import creman.pipe.events.EventsHandler;
+import creman.fog.events.EventsHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;

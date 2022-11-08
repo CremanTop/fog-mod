@@ -1,6 +1,6 @@
-package creman.pipe.api;
+package creman.fog.api;
 
-import creman.pipe.ClientProxy;
+import creman.fog.ClientProxy;
 
 public class FogUtil
 {

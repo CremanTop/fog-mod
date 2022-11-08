@@ -1,6 +1,6 @@
-package creman.pipe.events;
+package creman.fog.events;
 
-import creman.pipe.ClientProxy;
+import creman.fog.ClientProxy;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;

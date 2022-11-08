@@ -1,6 +1,6 @@
-package creman.pipe;
+package creman.fog;
 
-import creman.pipe.commands.FogCommand;
+import creman.fog.commands.FogCommand;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;

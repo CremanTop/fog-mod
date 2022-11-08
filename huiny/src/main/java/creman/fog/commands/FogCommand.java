@@ -1,4 +1,4 @@
-package creman.pipe.commands;
+package creman.fog.commands;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -12,8 +12,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import static creman.pipe.api.FogUtil.SetFogDensity;
-import static creman.pipe.api.FogUtil.SetFogColor;
+import static creman.fog.api.FogUtil.SetFogDensity;
+import static creman.fog.api.FogUtil.SetFogColor;
 
 public class FogCommand extends CommandBase
 {
