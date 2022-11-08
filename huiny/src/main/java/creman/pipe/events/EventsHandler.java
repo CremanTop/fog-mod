@@ -1,12 +1,9 @@
 package creman.pipe.events;
 
 import creman.pipe.ClientProxy;
-import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class EventsHandler {
@@ -44,31 +41,6 @@ public class EventsHandler {
                 ClientProxy.blue = 0;
                 e.getEntity().getEntityData().setBoolean("Doom_fog",true);
             }
-//            if (e.getEntity().world.isRemote)
-//            {
-//                EntityPlayer player = (EntityPlayer) e.getEntity();
-//                player.sendMessage(new TextComponentString("Hello, %p!".replace("%p", player.getName())));
-//            }
         }
     }
-//    @SubscribeEvent
-//    public void playerClone(PlayerEvent.Clone e) {
-//        e.getEntityPlayer().getEntityData().setIntArray("Doom_fog",e.getOriginal().getEntityData().getIntArray("Doom_fog"));
-//    }
-
-    @SubscribeEvent
-    public void bookshelfClick(PlayerInteractEvent.RightClickBlock e){
-        if (e.getWorld().isRemote)
-        {
-            return;
-        }
-        Block clickedBlock = e.getWorld().getBlockState(e.getPos()).getBlock();
-        if (clickedBlock.equals(Blocks.BOOKSHELF)){
-            //e.getEntityPlayer().sendMessage(new TextComponentString("Да, это оно!"));
-        }
-    }
-//    @SubscribeEvent
-//    public void bookshelfClick(PlayerInteractEvent.EntityInteract e){
-//        e.getEntityPlayer().sendMessage(e.getTarget().getDisplayName());
-//    }
 }

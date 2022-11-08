@@ -1,5 +1,1 @@
-itemGroup.Pipe=Pipes
-
-item.pipe.pipe.name=Pipe
-
 commands.fog.usage="Using: /fog color <red> <green> <blue>"

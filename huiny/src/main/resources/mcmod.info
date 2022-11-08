@@ -1,7 +1,7 @@
 [
   {
-    "modid": "pipe",
-    "name": "Pipe",
+    "modid": "fogutil",
+    "name": "Fog Util",
     "description": "",
     "version": "${version}",
     "mcversion": "${mcversion}",
