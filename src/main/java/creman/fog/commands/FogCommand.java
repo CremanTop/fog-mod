@@ -8,10 +8,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
+
 
 public class FogCommand extends CommandBase
 {
+    private String[] subtypes = {"color", "density"};
     @Override
     public String getName()
     {
@@ -21,9 +22,13 @@ public class FogCommand extends CommandBase
     @Override
     public String getUsage(ICommandSender sender)
     {
-        String translation = "commands.fog.usage";
+        return  "commands.fog.usage";
+    }
+
+    public void sendUsage(ICommandSender sender, String subtype)
+    {
+        String translation = String.format("commands.%s.usage", subtype);
         sender.sendMessage(new TextComponentTranslation(translation));
-        return translation;
     }
 
     @Override
@@ -31,20 +36,31 @@ public class FogCommand extends CommandBase
     {
         if (args.length == 0)
         {
-            getUsage(sender);
+            sendUsage(sender, getName());
             return;
         }
-        if (args[0].equals("color") && args.length == 4)
+        if (args[0].equals("color"))
         {
-            execute4Color(sender, args[1], args[2], args[3]);
-            return;
+            if (args.length == 4)
+            {
+                execute4Color(sender, args[1], args[2], args[3]);
+            }
+            else
+            {
+                sendUsage(sender, subtypes[0]);
+            }
         }
-        if (args[0].equals("density") && args.length == 2)
+        if (args[0].equals("density"))
         {
-            execute4Density(sender, args[1]);
-            return;
+            if (args.length == 2)
+            {
+                execute4Density(sender, args[1]);
+            }
+            else
+            {
+                sendUsage(sender, subtypes[1]);
+            }
         }
-        getUsage(sender);
     }
     private void execute4Color(ICommandSender sender, String rawr, String rawg, String rawb)
     {
@@ -57,7 +73,7 @@ public class FogCommand extends CommandBase
         }
         catch (NumberFormatException e)
         {
-            getUsage(sender);
+            sendUsage(sender, subtypes[0]);
         }
     }
     private void execute4Density(ICommandSender sender, String rawd)
@@ -71,12 +87,12 @@ public class FogCommand extends CommandBase
             }
             else
             {
-                getUsage(sender);
+                FogUtil.SetFogDensity(0);
             }
         }
         catch (NumberFormatException e)
         {
-            getUsage(sender);
+            sendUsage(sender, subtypes[1]);
         }
     }
     @Override
@@ -84,8 +100,7 @@ public class FogCommand extends CommandBase
     {
         if (args.length == 1)
         {
-            String[] array = {"color", "density"};
-            return getListOfStringsMatchingLastWord(args, array);
+            return getListOfStringsMatchingLastWord(args, subtypes);
         }
         else
         {
