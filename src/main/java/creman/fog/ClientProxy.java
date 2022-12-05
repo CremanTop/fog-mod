@@ -26,9 +26,4 @@ public class ClientProxy extends CommonProxy
     public void postInit(FMLPostInitializationEvent e) {
         super.postInit(e);
     }
-
-    public static float red = 0;
-    public static float green = 0;
-    public static float blue = 0;
-    public static float density = 0.03F;
 }
