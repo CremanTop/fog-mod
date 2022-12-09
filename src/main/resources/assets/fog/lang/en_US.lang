@@ -1,3 +1,3 @@
 commands.fog.usage=/fog (color, density)
-commands.color.usage= /fog color <red> <green> <blue>\n(-1 <= red, green, blue <= 1)
-commands.density.usage=/fog density <density>\n(0 <= density <=1)
+commands.color.usage= /fog color [player] <red> <green> <blue> (0 <= red, green, blue <= 1)
+commands.density.usage=/fog density [player] <density> (0 <= density <=1)

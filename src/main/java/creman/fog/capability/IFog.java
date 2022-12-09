@@ -10,5 +10,6 @@ public interface IFog
     public float getGreen();
     public float getBlue();
     public float getDensity();
+
     public void sendToClient(EntityPlayerMP playerMP);
 }

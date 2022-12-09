@@ -1,6 +1,5 @@
 package creman.fog.events;
 
-import creman.fog.ClientProxy;
 import creman.fog.Fog;
 import creman.fog.capability.FogCap;
 import creman.fog.capability.FogProvider;
