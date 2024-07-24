@@ -1,3 +1,4 @@
-commands.fog.usage=/fog (color, density)
+commands.fog.usage=/fog (color, density, natural)
 commands.color.usage= /fog color [player] <red> <green> <blue> (0 <= red, green, blue <= 1)
 commands.density.usage=/fog density [player] <density> (0 <= density <=1)
+commands.natural.usage=/fog natural [player] <natural> (true or false)

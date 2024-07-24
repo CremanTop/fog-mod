@@ -5,7 +5,6 @@ import creman.fog.capability.IFog;
 import creman.fog.network.ClientMessageHandler;
 import creman.fog.network.fog.common.PacketFog;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.entity.player.EntityPlayerMP;
 
 public class ClientHandlerFog extends ClientMessageHandler<PacketFog>
 {
@@ -16,5 +15,6 @@ public class ClientHandlerFog extends ClientMessageHandler<PacketFog>
         IFog fog = FogCap.get(player);
         fog.setColor(message.red, message.green, message.blue);
         fog.setDensity(message.density);
+        fog.setNatural(message.natural);
     }
 }

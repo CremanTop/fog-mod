@@ -15,6 +15,7 @@ public class FogStorage implements Capability.IStorage<IFog>
         tag.setFloat("green", instance.getGreen());
         tag.setFloat("blue", instance.getBlue());
         tag.setFloat("density", instance.getDensity());
+        tag.setBoolean("natural", instance.isNatural());
         return tag;
     }
 
@@ -24,5 +25,6 @@ public class FogStorage implements Capability.IStorage<IFog>
         NBTTagCompound compound = (NBTTagCompound) nbt;
         instance.setColor(compound.getFloat("red"), compound.getFloat("green"), compound.getFloat("blue"));
         instance.setDensity(compound.getFloat("density"));
+        instance.setNatural(compound.getBoolean("natural"));
     }
 }

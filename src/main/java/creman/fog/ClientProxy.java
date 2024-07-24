@@ -1,7 +1,5 @@
 package creman.fog;
 
-import creman.fog.commands.FogCommand;
-import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -15,7 +13,6 @@ public class ClientProxy extends CommonProxy
     public void preInit(FMLPreInitializationEvent e)
     {
         super.preInit(e);
-        ClientCommandHandler.instance.registerCommand(new FogCommand());
     }
     @Override
     public void init(FMLInitializationEvent e) {

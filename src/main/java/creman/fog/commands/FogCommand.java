@@ -16,7 +16,7 @@ import java.util.List;
 
 public class FogCommand extends CommandBase
 {
-    private String[] subtypes = {"color", "density"};
+    private String[] subtypes = {"color", "density", "natural"};
     @Override
     public String getName()
     {
@@ -51,6 +51,7 @@ public class FogCommand extends CommandBase
         {
             if (args.length == 5)
             {
+
                 EntityPlayerMP entityplayermp = getPlayer(server, sender, args[1]);
                 execute4Color(sender, entityplayermp, args[2], args[3], args[4]);
             }
@@ -69,6 +70,18 @@ public class FogCommand extends CommandBase
             else
             {
                 sendUsage(sender, subtypes[1]);
+            }
+        }
+        if (args[0].equals("natural"))
+        {
+            if (args.length == 3)
+            {
+                EntityPlayerMP entityplayermp = getPlayer(server, sender, args[1]);
+                FogUtil.SetFogNatural(entityplayermp, Boolean.parseBoolean(args[2]));
+            }
+            else
+            {
+                sendUsage(sender, subtypes[2]);
             }
         }
     }

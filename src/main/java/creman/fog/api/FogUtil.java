@@ -24,10 +24,20 @@ public class FogUtil
             fog.sendToClient(player);
         }
     }
-    public static void SetFog(EntityPlayerMP player, float red, float green, float blue, float density)
+    public static void SetFogNatural(EntityPlayerMP player, boolean natural)
+    {
+        if (!player.world.isRemote)
+        {
+            IFog fog = FogCap.get(player);
+            fog.setNatural(natural);
+            fog.sendToClient(player);
+        }
+    }
+    public static void SetFog(EntityPlayerMP player, float red, float green, float blue, float density, boolean natural)
     {
         SetFogColor(player, red, green, blue);
         SetFogDensity(player, density);
+        SetFogNatural(player, natural);
     }
     public static float getRed(EntityPlayerMP player)
     {
@@ -44,5 +54,8 @@ public class FogUtil
     public static float getDensity(EntityPlayerMP player)
     {
         return FogCap.get(player).getDensity();
+    }
+    public static boolean getNatural(EntityPlayerMP player) {
+        return FogCap.get(player).isNatural();
     }
 }

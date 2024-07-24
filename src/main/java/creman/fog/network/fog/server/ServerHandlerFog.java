@@ -14,5 +14,6 @@ public class ServerHandlerFog extends ServerMessageHandler<PacketFog>
         IFog fog = FogCap.get(player);
         fog.setColor(message.red, message.green, message.blue);
         fog.setDensity(message.density);
+        fog.setNatural(message.natural);
     }
 }

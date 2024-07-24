@@ -9,18 +9,20 @@ public class PacketFog implements IMessage
     public float green = 0.0f;
     public float blue = 0.0f;
     public float density = 0.0f;
+    public boolean natural = true;
 
     public PacketFog()
     {
         super();
     }
 
-    public PacketFog(float red, float green, float blue, float density)
+    public PacketFog(float red, float green, float blue, float density, boolean natural)
     {
         this.red = red;
         this.green = green;
         this.blue = blue;
         this.density = density;
+        this.natural = natural;
     }
 
     @Override
@@ -30,6 +32,7 @@ public class PacketFog implements IMessage
         this.green = buf.readFloat();
         this.blue = buf.readFloat();
         this.density = buf.readFloat();
+        this.natural = buf.readBoolean();
     }
 
     @Override
@@ -39,5 +42,6 @@ public class PacketFog implements IMessage
         buf.writeFloat(green);
         buf.writeFloat(blue);
         buf.writeFloat(density);
+        buf.writeBoolean(natural);
     }
 }

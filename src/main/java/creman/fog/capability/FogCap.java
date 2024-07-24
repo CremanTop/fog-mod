@@ -7,10 +7,11 @@ import net.minecraft.entity.player.EntityPlayerMP;
 
 public class FogCap implements IFog
 {
-    public float red = 0.0f;
-    public float green = 0.0f;
-    public float blue = 0.0f;
-    public float density = 0.0f;
+    public float red = 0.474f;
+    public float green = 0.646f;
+    public float blue = 1.0f;
+    public float density = 0.0005f;
+    public boolean natural = true;
 
     public static IFog get(EntityPlayer player)
     {
@@ -28,6 +29,11 @@ public class FogCap implements IFog
     public void setDensity(float density)
     {
         this.density = density;
+    }
+
+    @Override
+    public void setNatural(boolean natural) {
+        this.natural = natural;
     }
 
     @Override
@@ -55,8 +61,13 @@ public class FogCap implements IFog
     }
 
     @Override
+    public boolean isNatural() {
+        return this.natural;
+    }
+
+    @Override
     public void sendToClient(EntityPlayerMP playerMP)
     {
-        Dispatcher.sendTo(new PacketFog(red, green, blue, density), playerMP);
+        Dispatcher.sendTo(new PacketFog(red, green, blue, density, natural), playerMP);
     }
 }

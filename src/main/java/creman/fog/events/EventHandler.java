@@ -22,9 +22,12 @@ public class EventHandler
         if (e.getEntity() instanceof EntityPlayer)
         {
             IFog fog = FogCap.get((EntityPlayer) e.getEntity());
-            e.setRed(fog.getRed());
-            e.setGreen(fog.getGreen());
-            e.setBlue(fog.getBlue());
+            if (!fog.isNatural())
+            {
+                e.setRed(fog.getRed());
+                e.setGreen(fog.getGreen());
+                e.setBlue(fog.getBlue());
+            }
         }
     }
 
@@ -70,6 +73,7 @@ public class EventHandler
 
         fog.setColor(oldFog.getRed(), oldFog.getGreen(), oldFog.getBlue());
         fog.setDensity(oldFog.getDensity());
+        fog.setNatural(oldFog.isNatural());
         if (!player.world.isRemote)
         {
             fog.sendToClient((EntityPlayerMP) player);
