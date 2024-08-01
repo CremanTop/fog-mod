@@ -20,15 +20,15 @@ public class FogCap implements IFog
     @Override
     public void setColor(float red, float green, float blue)
     {
-        this.red = red;
-        this.green = green;
-        this.blue = blue;
+        this.red = valueHandler(red);
+        this.green = valueHandler(green);
+        this.blue = valueHandler(blue);
     }
 
     @Override
     public void setDensity(float density)
     {
-        this.density = density;
+        this.density = valueHandler(density);
     }
 
     @Override
@@ -69,5 +69,9 @@ public class FogCap implements IFog
     public void sendToClient(EntityPlayerMP playerMP)
     {
         Dispatcher.sendTo(new PacketFog(red, green, blue, density, natural), playerMP);
+    }
+
+    private float valueHandler(float rawValue) {
+        return rawValue >= 1 ? 1 : (rawValue <= 0 ? 0 : rawValue); // 0 <= value <= 1
     }
 }

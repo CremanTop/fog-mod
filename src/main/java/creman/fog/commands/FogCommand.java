@@ -16,7 +16,7 @@ import java.util.List;
 
 public class FogCommand extends CommandBase
 {
-    private String[] subtypes = {"color", "density", "natural"};
+    private final String[] subtypes = {"color", "density", "natural"};
     @Override
     public String getName()
     {
@@ -49,11 +49,26 @@ public class FogCommand extends CommandBase
         }
         if (args[0].equals("color"))
         {
-            if (args.length == 5)
+            if (args.length == 5 || args.length == 4)
             {
+                EntityPlayerMP entityplayermp;
+                byte supplement = 0;
+                if (args.length == 5) {
+                    entityplayermp = getPlayer(server, sender, args[1]);
+                    supplement = 1;
+                }
+                else {
+                    entityplayermp = getCommandSenderAsPlayer(sender);
+                }
 
-                EntityPlayerMP entityplayermp = getPlayer(server, sender, args[1]);
-                execute4Color(sender, entityplayermp, args[2], args[3], args[4]);
+                try
+                {
+                    FogUtil.SetFogColor(entityplayermp, Float.parseFloat(args[1 + supplement]), Float.parseFloat(args[2 + supplement]), Float.parseFloat(args[3 + supplement]));
+                }
+                catch (NumberFormatException e)
+                {
+                    sendUsage(sender, subtypes[0]);
+                }
             }
             else
             {
@@ -62,10 +77,26 @@ public class FogCommand extends CommandBase
         }
         if (args[0].equals("density"))
         {
-            if (args.length == 3)
+            if (args.length == 3 || args.length == 2)
             {
-                EntityPlayerMP entityplayermp = getPlayer(server, sender, args[1]);
-                execute4Density(sender, entityplayermp, args[2]);
+                EntityPlayerMP entityplayermp;
+                byte supplement = 0;
+                if (args.length == 3) {
+                    entityplayermp = getPlayer(server, sender, args[1]);
+                    supplement = 1;
+                }
+                else {
+                    entityplayermp = getCommandSenderAsPlayer(sender);
+                }
+
+                try
+                {
+                    FogUtil.SetFogDensity(entityplayermp, Float.parseFloat(args[1 + supplement]));
+                }
+                catch (NumberFormatException e)
+                {
+                    sendUsage(sender, subtypes[1]);
+                }
             }
             else
             {
@@ -74,10 +105,18 @@ public class FogCommand extends CommandBase
         }
         if (args[0].equals("natural"))
         {
-            if (args.length == 3)
+            if (args.length == 3 || args.length == 2)
             {
-                EntityPlayerMP entityplayermp = getPlayer(server, sender, args[1]);
-                FogUtil.SetFogNatural(entityplayermp, Boolean.parseBoolean(args[2]));
+                EntityPlayerMP entityplayermp;
+                byte supplement = 0;
+                if (args.length == 3) {
+                    entityplayermp = getPlayer(server, sender, args[1]);
+                    supplement = 1;
+                }
+                else {
+                    entityplayermp = getCommandSenderAsPlayer(sender);
+                }
+                FogUtil.SetFogNatural(entityplayermp, Boolean.parseBoolean(args[1 + supplement]));
             }
             else
             {
@@ -85,42 +124,7 @@ public class FogCommand extends CommandBase
             }
         }
     }
-    private void execute4Color(ICommandSender sender, EntityPlayerMP player, String rawr, String rawg, String rawb) throws PlayerNotFoundException
-    {
-        try
-        {
-            float r = Float.parseFloat(rawr) >= 1 ? 1 : Float.parseFloat(rawr);
-            float g = Float.parseFloat(rawg) >= 1 ? 1 : Float.parseFloat(rawg);
-            float b = Float.parseFloat(rawb) >= 1 ? 1 : Float.parseFloat(rawb);
-            r = r <= 0 ? 0 : r;
-            g = g <= 0 ? 0 : g;
-            b = b <= 0 ? 0 : b;
-            FogUtil.SetFogColor(player, r, g, b);
-        }
-        catch (NumberFormatException e)
-        {
-            sendUsage(sender, subtypes[0]);
-        }
-    }
-    private void execute4Density(ICommandSender sender, EntityPlayerMP player, String rawd)
-    {
-        try
-        {
-            float d = Float.parseFloat(rawd);
-            if (d > 0)
-            {
-                FogUtil.SetFogDensity(player, d >= 1 ? 1 : d);
-            }
-            else
-            {
-                FogUtil.SetFogDensity(player, 0);
-            }
-        }
-        catch (NumberFormatException e)
-        {
-            sendUsage(sender, subtypes[1]);
-        }
-    }
+
     @Override
     public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos targetPos)
     {
@@ -132,6 +136,10 @@ public class FogCommand extends CommandBase
         {
             return getListOfStringsMatchingLastWord(args, server.getOnlinePlayerNames());
         }
+//        else if (args.length == 3 && args[0].equals("natural"))
+//        {
+//            return getListOfStringsMatchingLastWord(new String[]{"true, false"});
+//        }
         else
         {
             return Collections.emptyList();

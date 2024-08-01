@@ -13,7 +13,7 @@ public class Fog
 {
     public static final String MOD_ID = "fog";
     public static final String MOD_NAME = "Fog Util";
-    public static final String VERSION = "1.0.2";
+    public static final String VERSION = "1.0.3";
 
     @SidedProxy(clientSide = "creman.fog.ClientProxy", serverSide = "creman.fog.CommonProxy")
     public static CommonProxy proxy;
